@@ -54,9 +54,9 @@ function scratch(event){
     if(!isScratching)return;
     const pos = getCursorPosition(event);
     ctx.beginPath();
-    ctx.arc(pos.x,pos.y,100,0, Math.PI*2);
+    ctx.arc(pos.x,pos.y,300,0, Math.PI*4);
     ctx.fill();
-    scratchedPixels += 400;
+    scratchedPixels += 1000;
 }
 
 function checkScratchingProgress() {

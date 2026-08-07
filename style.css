@@ -74,7 +74,7 @@ section{
 .sec-1{
     position: relative;
     background:#003329;
-    height: 100vh;
+    height: 80vh;
     left: 0;
     justify-content: center;
     align-items: center;
@@ -106,10 +106,10 @@ section .sec-1{
  
 .sec-1 p2{
     position:absolute;
-    padding: 100px;
+    padding: 20px;
     font-size:3em;
     color: #fff;
-    top: 40%;
+    top: 50%;
     font-family: "Great Vibes", cursive;
     font-weight: 400;
     font-style: normal;
@@ -127,15 +127,19 @@ section .sec-1{
     transform: translateX(0);
 }
 @media screen and (max-width:600px) {
-    .sec-1 p1,.sec-1.animate,.sec-1 p2{
-        font-size: 2em;
-        height: 100vh;
+    .sec-1 p1,.sec-1.animate,sec-1{
+        font-size: 1.8em;
+        height: 40vh;
+    }
+    .sec-1 p2{
+        font-size: 3em;
+        height: 40vh;
     }
     
 }
 @media screen and (max-width:1000px) {
     .sec-1 p1,.sec-1.animate,.sec-1 p2{
-        font-size: 2.4em;
+        font-size: 2.2em;
         height: 40vh;
     }
     
