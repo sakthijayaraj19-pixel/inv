@@ -54,6 +54,7 @@ section{
     font-size: 190px;
     color:#e6534e;
     position: absolute;
+    filter:drop-shadow(0px 5px 10px #000);
     animation: heartbeat 1s infinite ease-in-out;
 }
 @keyframes heartbeat {
@@ -97,6 +98,7 @@ section{
     font-style: normal;
     overflow: hidden;
     left: 0;
+    top: 10%;
 
 }
 section .sec-1{
@@ -126,7 +128,7 @@ section .sec-1{
    
 }
 .sec-1 .animate1{
-    transform: translateX(100%);
+    transform: translateX(200%);
 }
 .sec-1.show-animate .animate1{
     transform: translateX(0);
@@ -139,6 +141,7 @@ section .sec-1{
     .sec-1 p2{
         font-size: 3em;
         height: 40vh;
+        top:70%;
     }
     
 }
@@ -156,9 +159,9 @@ section .sec-1{
     }
     
 }
-@media screen and (min-height:800px) {
+@media screen and (min-height:700px) {
     .sec-1 p1,.sec-1.animate,.sec-1 p2{
-        font-size: 3em;
+        font-size: 2.5em;
         height: 100vh;
     }
     
