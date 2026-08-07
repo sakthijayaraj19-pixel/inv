@@ -44,12 +44,18 @@ section{
 .sec-1{
     position: relative;
     background:#003329;
-    padding: 150px;
+    padding: 20px; 
+    height: 30vh;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     z-index: 2;
 }
 .sec-1 p{
-    font-size: 2em;
+    font-size: 1em;
     color: #fff;
+    top: 10%;
 }
 .scratch-card{
     
@@ -83,7 +89,7 @@ canvas{
 }
 .popup{
     position: absolute;
-    width: 450px;
+    width: 300px;
     height: 170px;
     color: antiquewhite;
     align-items: center;
