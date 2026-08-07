@@ -1,13 +1,15 @@
 let text =document.querySelector('.text');
-// let leaf =document.getElementById('leaf');
-// let hill1 =document.getElementById('hill1');
-// let hill4 =document.getElementById('hill4');
-// let hill5 =document.getElementById('hill5');
+let text1 =document.querySelector('.text1');
+let text2 =document.querySelector('.text2');
+let text3 =document.querySelector('.text3');
 
 window.addEventListener('scroll',()=>{
     let value = window.scrollY;
 
     text.style.marginTop = value * 2.5 + 'px'
+    text1.style.marginLeft = value * 2.5 + 'px'
+    text2.style.marginBottom = value * 2.5 + 'px'
+    text3.style.marginRight= value * 2.5 + 'px'
 });
 const canvas = document.getElementById('scratchCanvas');
 const ctx = canvas.getContext('2d');
@@ -78,8 +80,25 @@ canvas.addEventListener("mousedown",startScratching);
 canvas.addEventListener("mousemove",scratch);
 canvas.addEventListener("mouseup",stopScratching);
 canvas.addEventListener("mouseleave",stopScratching);
-canvas.addEventListener("screenScratchup",startScratching);
-canvas.addEventListener("screenScratch",scratch);
-canvas.addEventListener("screenScratchup",stopScratching);
-canvas.addEventListener("screenScratchleave",stopScratching);
+canvas.addEventListener("touchstart",startScratching);
+canvas.addEventListener("touchmove",scratch);
+canvas.addEventListener("touchend",stopScratching);
+canvas.addEventListener("touchleave",stopScratching);
 setupCanvas();
+
+let sections = document.querySelectorAll('section');
+
+window.onscroll =() =>{
+    sections.forEach(sec =>{
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+
+        if (top >= offset && top < offset + height){
+            sec.classList.add('show-animate');
+        }
+        else{
+            sec.classList.remove('show-animate');
+        }
+    })
+}
