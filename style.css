@@ -171,6 +171,29 @@ section .sec-1{
     }
     
 }
+@media screen and (min-height:1000px) {
+    .sec-1 p1,.sec-1.animate,.sec-1{
+        font-size: 2em;
+        height: 100vh;
+    }
+    .sec-1 p2{
+        font-size: 2em;
+        height: 100vh;
+        top:65%;
+    }
+    
+}
+/* @media screen and (min-height:600px) {
+    .sec-1 p1,.sec-1.animate,.sec-1{
+        font-size: 2em;
+        height: 100vh;
+    }
+    .sec-1 p2{
+        font-size: 2em;
+        height: 100vh;
+        top:65%;
+    }
+     */
 
 .scratch-card{
     position: relative;
