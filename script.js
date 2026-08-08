@@ -12,79 +12,100 @@ window.addEventListener('scroll',()=>{
     text3.style.marginRight= value * 2.5 + 'px'
 });
 const canvas = document.getElementById('scratchCanvas');
-const ctx = canvas.getContext('2d');
-let isScratching =false;
-let scratcedPixels = 0;
-let totalPixels = 0;
+const ctx = canvas.getContext("2d");
+// const card = document.querySelector(".scratch-card");
 
-const container = document.querySelector('.scratch-card');
+function resizeCanvas(){
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
 
-function setupCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    canvas.width = rect.width * dpr;
+    canvas.height=rect.height * dpr;
 
-    const img = new Image();
-    img.src = '10.jpg';
-    img.onload = () => {
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        ctx.globalCompositeOperation = "destination-out";
-        totalPixels = canvas.width . canvas.height;
-    };
+    ctx.scale(dpr,dpr);
+
+    ctx.fillStyle ="#999";
+    ctx.fillRect(0,0,rect.width,rect.height);
+
+    ctx.fillStyle ="#666";
+    ctx.font = "normal 25px sekuya";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("SCRATCH HERE",rect.width / 2 , rect.height / 2);
+    
 }
 
-function getCursorPosition(event){
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+let scratching = false;
+function getPosition(e){
     const rect = canvas.getBoundingClientRect();
     return{
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
+     x : e.clientX - rect.left,
+     y : e.clientY - rect.top
+
     };
 }
+function scratch(e) {
+    if(!scratching) return;
+    
+    const {x , y}= getPosition(e);
 
-function startScratching(event) {
-    isScratching = true;
-    sratch(event);
-}
+    ctx.globalCompositeOperation = "destination-out";
 
-function stopScratching() {
-    isScratching = false;
-    checkScratchingProgress();
-}
-
-function scratch(event){
-    if(!isScratching)return;
-    const pos = getCursorPosition(event);
     ctx.beginPath();
-    ctx.arc(pos.x,pos.y,300,0, Math.PI*4);
+    ctx.arc(x,y,25,0,Math.PI * 2);
     ctx.fill();
-    scratchedPixels += 1000;
 }
 
-function checkScratchingProgress() {
-    if ((scratchedPixels * totalPixels) > 0.4) {
-        canvas.style.display = "none"
-        triggerBlastEffect();
-    }
-}
+// function checkScratchingProgress(){
+//     if((ScratchedPixels /totalPixels) > 1){
+//         canvas.style.display ="none";
+//         triggerBlastEffect();
+//     }
+// }
 
-function triggerBlastEffect() {
-    for (let i = 0; i<10; i++){
-        const star = document.createElement("div");
-        star.classList.add("blast");
-        star.style.left = `${Math.random()*100}%`;
-        star.style.top = `${Math.random()*100}%`;
-        container.appendChild(star);
-        setTimeout(() => star.remove,3000);
-    }
-}
-canvas.addEventListener("mousedown",startScratching);
-canvas.addEventListener("mousemove",scratch);
-canvas.addEventListener("mouseup",stopScratching);
-canvas.addEventListener("mouseleave",stopScratching);
-canvas.addEventListener("touchstart",startScratching);
-canvas.addEventListener("touchmove",scratch);
-canvas.addEventListener("touchend",stopScratching);
-canvas.addEventListener("touchleave",stopScratching);
-setupCanvas();
+// function triggerBlastEffect(){
+//     for (let i = 0; i<10; i++){
+//         const star = document.createElement("div");
+//         star.classList.add("blast");
+//         star.style.left = `${Math.random()*100}%`
+//         star.style.top = `${Math.random()*100}%`
+//         container.appendChild(star);
+//         setTimeout(() => star.remove,3000);
+//     }
+// }
+
+
+canvas.addEventListener("pointerdown",(e) => {
+    scratching = true;
+    scratch(e);
+});
+
+canvas.addEventListener("pointermove",scratch);
+canvas.addEventListener("pointerup",() => {
+    scratching = false;
+});
+canvas.addEventListener("pointerleave",() => {
+    scratching = false;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let sections = document.querySelectorAll('section');
 
